@@ -72,3 +72,7 @@ module.exports = () => {
   };
 };
 
+mix.webpackConfig({
+  stats: {
+      children: true,
+  },});

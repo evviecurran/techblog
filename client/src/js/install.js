@@ -20,7 +20,7 @@ butInstall.addEventListener('click', async () => {
 
 // TODO: Add an handler for the `appinstalled` event
 window.addEventListener('appinstalled', (event) => {
-    window.deferredPrompt = null; 
+    window.deferredPrompt = event; 
 });
 
 // figure out why the event is not highlight- means it is not being called somewhere here 

@@ -11,68 +11,59 @@ module.exports = () => {
     mode: 'development',
     entry: {
       main: './src/js/index.js',
-      install: './src/js/install.js'
+      install: './src/js/install.js',
     },
     output: {
       filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(_dirname, 'dist'),
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: "./index.html",
-        title: "JATE",
+        template: './index.html',
+        title: 'JATE'
       }),
-
       new InjectManifest({
-        swSrc: "./src-sw.js",
-        swDest: "src-sw.js",
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js'
       }),
-
       new WebpackPwaManifest({
         fingerprints: false, 
         inject: true, 
+        short_name: "Jate",
         name: "Just Another Text Editor",
-        short_name: "JATE",
-        description: "Text Editor with offline access using IndexDB",
-        background_color: "#225ca3",
-        theme_color: "#225ca3",
-        start_url: "/",
-        publicPath: "/",
         icons: [
           {
-            src: path.resolve("src/images/logo.png"),
-            sizes: [96,128, 192, 256, 384, 512],
-            destination: path.join("assests", "icons"),
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 284, 512],
+            destination: path.join('assets', 'icons')
           },
         ],
-      }),
-    ],
+        start_url: "/",
+        publicPath: "/",
+        description: "just another text editor",
+        background_color: "#7eb4e2",
+        theme_color: "#7eb4e2"
+      })
+    ], 
 
     module: {
       rules: [
         {
-          test: /\.css$/,
+          test: /\.css$/i,
           use: ['style-loader', 'css-loader'],
         },
         {
           test: /\.m?js$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
+            loader: 'babel-loader',
             options: {
-              presets: ["@babel/present-env"],
-              plugins: ["@babel/plugin-proposal-object-rest-spread",
-                        "@babel/transform-runtime",
-              ],
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
+            },
           },
         },
-      },
       ],
     },
   };
 };
-
-// mix.webpackConfig({
-//   stats: {
-//       children: true,
-//   },});

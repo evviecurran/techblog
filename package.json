@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "main": "server.js",
-    "node": "server.js",
+   
     "scripts": {
 
       "dev": "webpack-dev-server",
